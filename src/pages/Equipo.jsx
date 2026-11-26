@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import Icon from '../components/Icon.jsx'
 import Select from '../components/Select.jsx'
-import { usePage, PageHero, BtnCita, BtnWa, Closing } from '../components/ui.jsx'
+import { usePage, PageHero, BtnCita, BtnWa } from '../components/ui.jsx'
 import { TODAS_ESPECIALIDADES } from '../site.js'
 import { EQUIPO, iniciales } from '../data/equipo.js'
 
@@ -48,7 +48,7 @@ export default function Equipo() {
       <section className="section tight">
         <div className="wrap">
           <div className="search-bar" role="search">
-            <div className="field"><label className="sr" htmlFor="q" style={{ position: 'absolute', left: -9999 }}>Buscar por nombre o especialidad</label><input id="q" placeholder="Buscar por nombre o especialidad" value={q} onChange={(e) => setQ(e.target.value)} /></div>
+            <div className="field"><label className="sr" htmlFor="q" style={{ position: 'absolute', left: -9999 }}>Buscar por nombre</label><input id="q" placeholder="Buscar por nombre" value={q} onChange={(e) => setQ(e.target.value)} /></div>
             <div className="field">
               <Select ariaLabel="Especialidad" value={esp} onChange={setEsp} placeholder="Todas las especialidades" options={TODAS_ESPECIALIDADES} />
             </div>
@@ -78,6 +78,7 @@ export default function Equipo() {
                         <h3>{d.nombre}</h3>
                         <p className="spec">{d.esp}</p>
                         <p className="doc-role">{d.cargo}</p>
+                        <div className="doc-cta"><BtnCita /></div>
                       </div>
                     </article>
                   ))}
@@ -100,9 +101,6 @@ export default function Equipo() {
         </div>
       </section>
 
-      <Closing img="/img/banners/cierre-equipo.webp" text="Los horarios de cada especialista pueden cambiar. Al solicitar tu cita te confirmamos con quién y cuándo serás atendido.">
-        <BtnCita variant="white" />
-      </Closing>
 
       {open && (
         <div className="modal-back" onClick={() => setOpen(null)}>

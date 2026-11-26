@@ -1,5 +1,5 @@
 import Icon from '../components/Icon.jsx'
-import { usePage, PageHero, BtnCita, Btn, Ph, Dato, Closing } from '../components/ui.jsx'
+import { usePage, PageHero, BtnCita, Btn, Ph } from '../components/ui.jsx'
 import { SITE } from '../site.js'
 import TarjetaColor from '../components/TarjetaColor.jsx'
 
@@ -46,15 +46,6 @@ export default function Universitario() {
         </div>
       </section>
 
-      <Closing
-        img="/img/banners/cierre-universitario.webp"
-        title="Te atienden profesionales que siguen aprendiendo"
-        text="Solicita tu cita en el HUM o conoce más sobre la Universidad Metropolitana."
-      >
-        <BtnCita variant="white" />
-        <Btn href="#" variant="glass" icon="graduation">Conocer la Universidad Metropolitana</Btn>
-      </Closing>
-      <div className="wrap center small" style={{ textAlign: 'center', marginTop: 8 }}>Enlace pendiente: <Dato>enlace al sitio de la Universidad</Dato></div>
     </>
   )
 }

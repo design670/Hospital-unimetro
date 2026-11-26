@@ -972,3 +972,178 @@ main > .curtain-edge { border-radius: 40px 40px 0 0; margin-top: var(--frame); }
   .mo-actions { flex-direction: column; }
   .mo-meta { flex-direction: column; align-items: flex-start; }
 }
+
+/* Submenús del encabezado con el mismo ancho de la barra del menú */
+.site-header .sh-inner { position: relative; }
+.site-header .sh-right, .site-header .sh-nav, .site-header .sh-item { position: static; }
+.sh-mega { left: 0; right: 0; width: auto; transform: translateY(6px); }
+.sh-item.has-sub:hover .sh-mega, .sh-item.has-sub:focus-within .sh-mega { transform: none; }
+.sh-mega-inner { padding: 18px; border-radius: 22px; }
+.sh-mega-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; }
+.sh-mega-item { padding: 14px 16px; }
+.sh-sub { left: 0; right: 0; top: calc(100% + 12px); min-width: 0; padding: 12px; border-radius: 22px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; }
+.sh-sub a { padding: 14px 16px; font-weight: 600; }
+
+/* Formularios más compactos y refinados (todos los formularios del sitio) */
+.form-card h2 { font-size: clamp(1.8rem, 2.6vw, 2.3rem); font-weight: 500; letter-spacing: -0.035em; }
+.form-grid { gap: 16px; margin-top: 24px; }
+.field { gap: 6px; }
+.field label, .field .label { font-size: 0.82rem; font-weight: 600; color: var(--ink-2); letter-spacing: 0.01em; }
+.field input:not([type="radio"]):not([type="checkbox"]), .field select, .field textarea { min-height: 46px; padding: 11px 14px; border-radius: 12px; border: 1px solid var(--line); background: #f8fafd; font-size: 0.95rem; }
+.field input:not([type="radio"]):not([type="checkbox"]):hover, .field textarea:hover { border-color: #cfd9e5; }
+.field textarea { min-height: 112px; }
+.hselect-btn { min-height: 46px; padding: 11px 14px; border-radius: 12px; border: 1px solid var(--line); background: #f8fafd; }
+/* Opciones «Soy…»: tarjetas del mismo tamaño con un punto pequeño */
+.radios { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.radios label { position: relative; display: flex; align-items: center; gap: 10px; min-height: 46px; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--line); background: #f8fafd; font-weight: 600; font-size: 0.88rem; line-height: 1.25; color: var(--ink); transition: border-color .2s, background .2s, color .2s; }
+.radios label:hover { border-color: #cfd9e5; }
+.radios input[type="radio"] { appearance: none; -webkit-appearance: none; flex: none; width: 18px; height: 18px; min-height: 0; margin: 0; padding: 0; border-radius: 50%; border: 1.5px solid #9fb0c3; background: var(--white); display: grid; place-items: center; cursor: pointer; transition: border-color .2s; }
+.radios input[type="radio"]::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--blue); transform: scale(0); transition: transform .18s; }
+.radios input[type="radio"]:checked { border-color: var(--blue); }
+.radios input[type="radio"]:checked::after { transform: scale(1); }
+.radios input[type="radio"]:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.radios label:has(input:checked) { border-color: var(--blue); background: #eaf4fc; color: var(--blue); }
+.check input { accent-color: var(--blue); }
+/* EPS y empresas: contacto a la izquierda, formulario más ancho a la derecha */
+.aliados-form { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); }
+.aliados-form .panel { position: sticky; top: calc(var(--header-h) + 40px); }
+@media (max-width: 960px) { .aliados-form { grid-template-columns: 1fr; } .aliados-form .panel { position: static; } }
+
+/* EPS y empresas: tarjeta de contacto comercial en azul con una persona recortada */
+.cc-card { position: relative; overflow: hidden; display: flex; flex-direction: column; min-height: 640px; border-radius: var(--radius-lg); background: var(--grad); background-size: 100% 220%; color: rgba(255,255,255,.88); }
+.cc-card::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(60% 45% at 85% 0%, rgba(0,157,220,.45), transparent 70%); }
+.cc-text { position: relative; z-index: 1; padding: clamp(28px, 3vw, 40px); }
+.cc-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+.cc-card h3 { margin-top: 12px; color: var(--white); font-size: clamp(1.5rem, 2.2vw, 1.9rem); font-weight: 500; line-height: 1.15; letter-spacing: -0.03em; }
+.cc-card .info-list { margin-top: 22px; display: grid; gap: 12px; }
+.cc-card .info-list li { display: flex; align-items: center; gap: 12px; }
+.cc-card .info-list svg { width: 20px; height: 20px; color: #bfe6fb; flex: none; }
+.cc-img { position: relative; z-index: 1; display: block; width: 86%; max-width: 380px; height: auto; margin: auto auto 0; }
+.aliados-form .cc-card { position: sticky; top: calc(var(--header-h) + 40px); }
+@media (max-width: 960px) { .aliados-form .cc-card { position: static; min-height: 0; } .cc-img { width: 70%; max-width: 300px; } }
+.cc-img { width: auto; max-width: 92%; max-height: min(440px, calc(100vh - var(--header-h) - 330px)); min-height: 280px; object-fit: contain; object-position: bottom; }
+.cc-card { min-height: 0; }
+@media (max-width: 960px) { .cc-img { max-height: 340px; min-height: 0; } }
+
+/* EPS y empresas: un solo bloque azul con el contacto a la izquierda y el formulario blanco adentro, a la derecha */
+.cc-block { position: relative; overflow: hidden; display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(24px, 4vw, 56px); align-items: stretch; padding: clamp(20px, 2.4vw, 32px); border-radius: var(--radius-lg); background: var(--grad); background-size: 100% 200%; color: rgba(255,255,255,.88); }
+.cc-block::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(55% 45% at 15% 0%, rgba(0,157,220,.45), transparent 70%); }
+.cc-side { position: relative; z-index: 1; display: flex; flex-direction: column; min-height: 100%; }
+.cc-side .cc-text { padding: clamp(16px, 2vw, 28px) clamp(8px, 1.5vw, 20px) 0; }
+.cc-side h3 { margin-top: 12px; color: var(--white); font-size: clamp(1.7rem, 2.8vw, 2.5rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.035em; }
+.cc-side .info-list { margin-top: 24px; display: grid; gap: 12px; }
+.cc-side .info-list li { display: flex; align-items: center; gap: 12px; }
+.cc-side .info-list svg { width: 20px; height: 20px; color: #bfe6fb; flex: none; margin: 0; }
+.cc-side .cc-img { display: block; width: auto; max-width: 88%; max-height: 470px; min-height: 0; height: auto; margin: auto auto calc(-1 * clamp(20px, 2.4vw, 32px)); object-fit: contain; object-position: bottom; }
+.cc-block .form-card { position: relative; z-index: 1; border: 0; }
+.cc-block .form-card h2 { color: var(--ink); }
+@media (max-width: 960px) {
+  .cc-block { grid-template-columns: 1fr; }
+  .cc-side .cc-img { max-height: 320px; margin: 20px auto 0; }
+}
+/* Dentro del formulario blanco el CTA vuelve a ser azul */
+.cc-block .form-card .btn-primary.btn-cta { background: var(--blue); color: var(--white); }
+.cc-block .form-card .btn-primary.btn-cta .btn-arrow { background: rgba(255,255,255,.2); color: var(--white); }
+.cc-block .form-card .btn-primary.btn-cta:hover { background: #0062a0; }
+
+/* Cierre: la persona sobresale por arriba del bloque azul del footer */
+.footer .frame { overflow: visible; }
+.footer .closing.has-img { position: relative; min-height: 300px; }
+.footer .closing-img { position: absolute; right: clamp(0px, 4vw, 64px); bottom: 0; width: auto; height: calc(100% + clamp(110px, 12vw, 170px)); max-width: none; max-height: none; margin: 0; object-fit: contain; object-position: bottom; pointer-events: none; }
+@media (max-width: 720px) {
+  .footer .closing.has-img { min-height: 0; }
+  .footer .closing-img { position: static; height: auto; width: 74%; max-width: 280px; margin: 24px auto 0; }
+}
+.footer { margin-top: clamp(110px, 12vw, 180px); }
+@media (max-width: 720px) { .footer { margin-top: 48px; } }
+/* Inicio: sin íconos decorativos en «Visito a un paciente» y «3 pasos»; el texto queda abajo */
+.bt-a .bt-foot, .bt-d .bt-foot { margin-top: auto; }
+
+/* Inicio · servicios: al pasar el cursor la tarjeta se pone azul */
+.svc-card { transition: background-color .3s ease, color .3s ease, transform .25s; }
+.svc-card h3, .svc-card p, .svc-card .num { transition: color .3s ease; }
+.svc-card .ico { transition: background .3s ease, color .3s ease; }
+.svc-card:hover, .svc-card:focus-visible { background: var(--blue); }
+.svc-card:hover h3, .svc-card:focus-visible h3 { color: var(--white); }
+.svc-card:hover p, .svc-card:focus-visible p { color: rgba(255,255,255,.88); }
+.svc-card:hover .num, .svc-card:focus-visible .num { color: rgba(255,255,255,.7); }
+.svc-card:hover .ico, .svc-card:focus-visible .ico { background: rgba(255,255,255,.18); color: var(--white); }
+@media (prefers-reduced-motion: reduce) { .svc-card, .svc-card .ico, .svc-card h3, .svc-card p { transition: none; } }
+
+/* Todas las tarjetas blancas (.card): al pasar el cursor se ponen azules (la de Urgencias, roja) */
+.card { transition: background-color .3s ease, color .3s ease, transform .25s, box-shadow .25s; }
+.card :is(h2, h3, h4, p, li, strong, .num, .val, .link-arrow) { transition: color .3s ease; }
+.card .ico { transition: background .3s ease, color .3s ease; }
+.card:hover, a.card:focus-visible { background: var(--blue); color: rgba(255,255,255,.88); }
+.card.urgent:hover, a.card.urgent:focus-visible { background: var(--alert); }
+.card:hover :is(h2, h3, h4, strong, .val, .link-arrow, .link-arrow svg), a.card:focus-visible :is(h2, h3, h4, strong, .val, .link-arrow) { color: var(--white); }
+.card:hover :is(p, li, .help), a.card:focus-visible :is(p, li) { color: rgba(255,255,255,.88); }
+.card:hover .num { color: rgba(255,255,255,.7); }
+.card:hover .ico, a.card:focus-visible .ico { background: rgba(255,255,255,.18); color: var(--white); }
+.card:hover .dato { background: rgba(255,255,255,.16); color: #fff; border-color: rgba(255,255,255,.55); }
+.card:hover a:not(.btn) { color: var(--white); }
+/* Botones dentro de la tarjeta azul: el CTA principal pasa a blanco */
+.card:hover .btn-primary.btn-cta { background: var(--white); color: var(--ink); }
+.card:hover .btn-primary.btn-cta .btn-arrow { background: var(--ink); color: var(--white); }
+.card:hover .btn-ghost { border-color: transparent; }
+@media (prefers-reduced-motion: reduce) { .card, .card .ico, .card :is(h2, h3, h4, p, li) { transition: none; } }
+
+/* Un solo menú en todo el sitio: el de dos filas, fijo y flotante; al bajar toma un fondo de vidrio azul */
+.gnav { display: none !important; }
+.site-header { position: fixed; }
+.site-header .sh-inner { transition: background-color .35s ease, border-color .35s ease, padding .35s ease, border-radius .35s ease, height .35s ease; border: 1px solid transparent; }
+.site-header.is-scrolled .sh-inner { padding: 0 clamp(16px, 2vw, 26px); border-radius: 26px; background: rgba(9,52,92,.86); border-color: rgba(255,255,255,.18); -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); }
+/* Al bajar se ve siempre en versión clara sobre el vidrio azul, venga o no de una portada azul */
+.site-header.is-scrolled .logo .logo-c { display: none; }
+.site-header.is-scrolled .logo .logo-w { display: block; }
+.site-header.is-scrolled .sh-item > a { color: rgba(255,255,255,.92); }
+.site-header.is-scrolled .sh-item > a:hover, .site-header.is-scrolled .sh-item > a.active { color: #fff; background: rgba(255,255,255,.16); }
+.site-header.is-scrolled .sh-pill.soft { background: rgba(255,255,255,.16); color: #fff; border: 1px solid rgba(255,255,255,.38); }
+.site-header.is-scrolled .sh-pill.blue { background: #fff; color: var(--ink); }
+.site-header.is-scrolled .sh-hb { color: #fff; background: rgba(255,255,255,.16); }
+@media (max-width: 1180px) {
+  .site-header.is-scrolled .sh-inner { border-radius: 999px; padding: 0 8px 0 18px; }
+}
+
+/* Barra azul fija con los accesos rápidos + menú flotante de una fila debajo */
+:root { --topbar-h: 54px; --header-h: 80px; }
+.site-header { padding: 0; }
+.sh-topbar { pointer-events: auto; height: var(--topbar-h); background: var(--deep); color: #fff; border-bottom: 1px solid rgba(255,255,255,.08); }
+.sh-topbar-in { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.sh-topbar-info { display: inline-flex; align-items: center; gap: 9px; font-size: 0.84rem; color: rgba(255,255,255,.78); white-space: nowrap; }
+.sh-topbar .sh-actions { display: flex; gap: 8px; }
+.sh-topbar .sh-pill { height: 38px; padding: 0 16px; font-size: 0.86rem; gap: 8px; }
+.sh-topbar .sh-pill svg { width: 16px; height: 16px; }
+.sh-topbar .sh-pill.soft { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.3); }
+.sh-topbar .sh-pill.soft:hover { background: rgba(255,255,255,.22); }
+.sh-topbar .sh-pill.blue { background: #fff; color: var(--ink); }
+.sh-topbar .sh-pill.blue:hover { background: #eaf4fc; }
+.sh-pill-ic { color: #7fe0a6; }
+.site-header > .wrap { margin-top: 10px; }
+.site-header .sh-right { justify-content: center; }
+main { padding-top: var(--topbar-h); }
+.hero, .page-hero { padding-top: calc(var(--header-h) + 18px + clamp(40px, 5vw, 72px)); }
+html { scroll-padding-top: calc(var(--topbar-h) + var(--header-h) + 40px); }
+.toc { top: calc(var(--topbar-h) + var(--header-h) + 22px); }
+@media (max-width: 1180px) {
+  :root { --header-h: 66px; }
+  .sh-topbar-info { display: none; }
+  .sh-topbar-in { justify-content: center; }
+}
+@media (max-width: 720px) {
+  :root { --topbar-h: 50px; --header-h: 60px; }
+  .sh-topbar .sh-actions { width: 100%; justify-content: space-between; gap: 6px; }
+  .sh-topbar .sh-pill { height: 34px; padding: 0 12px; font-size: 0.8rem; flex: 1 1 auto; justify-content: center; }
+  .sh-topbar .sh-pill > svg:last-child { display: none; }
+  .sh-long { display: none; }
+  .site-header > .wrap { margin-top: 8px; }
+}
+/* Barra superior: el texto también se ve en tableta; en celular solo los dos botones */
+@media (max-width: 1180px) and (min-width: 721px) { .sh-topbar-info { display: inline-flex; } .sh-topbar-in { justify-content: space-between; } }
+@media (max-width: 720px) { .sh-topbar .sh-actions { justify-content: center; } .sh-topbar .sh-pill { flex: 1 1 0; } }
+@media (max-width: 720px) { .sh-long { display: inline; } }
+/* Equipo médico: botón «Solicitar cita» en cada tarjeta */
+.doc-cta { margin-top: 14px; }
+.doc-cta .btn { min-height: 42px; font-size: 0.86rem; }
+.doc-cta .btn.btn-cta { padding: 0 5px 0 18px; gap: 10px; }
+.doc-cta .btn-arrow { width: 32px; height: 32px; }

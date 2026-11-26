@@ -52,7 +52,7 @@ export function Transparencia() {
 }
 
 export function NotFound() {
-  usePage('Página no encontrada | HUM')
+  usePage('Página no encontrada | HUM', 'Puede que el enlace haya cambiado. Vuelve al inicio o escríbenos y te ayudamos.')
   return (
     <section className="notfound frame grad on-blue" style={{ paddingTop: 120 }}>
       <div className="wrap">

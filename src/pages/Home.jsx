@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import Icon from '../components/Icon.jsx'
 import Carousel from '../components/Carousel.jsx'
-import { usePage, Btn, BtnCita, BtnUrgencias, BtnLlegar, Arrow, Ph, Closing } from '../components/ui.jsx'
+import { usePage, Btn, BtnCita, BtnUrgencias, BtnLlegar, Arrow, Ph } from '../components/ui.jsx'
 import { SITE } from '../site.js'
 
 const NECESIDADES = [
@@ -65,9 +65,6 @@ export default function Home() {
           <div className="bento">
             {/* Visito a un paciente */}
             <Link to="/pacientes" className="bt bt-a">
-              <div className="bt-icons">
-                <span><Icon name="clock" /></span><span><Icon name="users" /></span><span><Icon name="heart" /></span>
-              </div>
               <div className="bt-foot">
                 <h3>Visito a un paciente.</h3>
                 <p>Horarios, normas y recomendaciones para familias.</p>
@@ -101,7 +98,6 @@ export default function Home() {
 
             {/* Cita: tarjeta de dato grande */}
             <Link to="/solicitar-cita" className="bt bt-d">
-              <span className="bt-badge"><Icon name="calendar" /></span>
               <div className="bt-foot">
                 <p className="bt-big">3 pasos</p>
                 <h3>Quiero pedir una cita.</h3>
@@ -251,13 +247,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 11 · Cierre */}
-      <Closing
-        title="¿Necesitas ayuda para pedir tu cita?"
-        text={<>Escríbenos por WhatsApp al {SITE.whatsapp}, al correo <a className="inline" href={`mailto:${SITE.citas}`}>{SITE.citas}</a> o llena el formulario.</>}
-      >
-        <BtnCita variant="white" />
-      </Closing>
     </>
   )
 }

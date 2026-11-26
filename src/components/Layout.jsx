@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import Icon from './Icon.jsx'
 import { useCurtain, useReveal } from './motion.js'
-import { BtnArrow, FooterSlot } from './ui.jsx'
+import { BtnArrow, Btn, BtnCita } from './ui.jsx'
 import { MENU, FOOTER_LINKS, SITE, waLink } from '../site.js'
 
 const PAGE_NAMES = {
@@ -44,11 +44,6 @@ const SUBMENU = {
     ['/pacientes', 'Pacientes y visitantes'], ['/atencion-al-usuario', 'Atención al usuario'], ['/contacto', 'Contacto y ubicación'],
   ],
 }
-/** Accesos cortos de la píldora flotante. */
-const GN_LINKS = [
-  ['/servicios', 'Servicios'], ['/equipo-medico', 'Equipo médico'], ['/pacientes', 'Pacientes'],
-  ['/hospital-universitario', 'Universitario'], ['/aliados', 'EPS y empresas'], ['/quienes-somos', 'Nosotros'],
-]
 /** Enlaces grandes del menú a pantalla completa. */
 const OV_LINKS = [...MENU, { to: '/atencion-al-usuario', label: 'Atención al usuario' }, { to: '/contacto', label: 'Contacto y ubicación' }]
 
@@ -64,9 +59,8 @@ function Burger({ open, onClick, btnRef, className = '' }) {
 export default function Layout() {
   const { pathname, hash } = useLocation()
   const [open, setOpen] = useState(false)
-  const [pill, setPill] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const [overHero, setOverHero] = useState(true)
-  const [footerSlot, setFooterSlot] = useState(null)
   const headerRef = useRef(null)
   const closeRef = useRef(null)
   const wa = waLink(PAGE_NAMES[pathname] || 'la página web')
@@ -80,13 +74,11 @@ export default function Layout() {
   }, [pathname, hash])
   // El encabezado va transparente sobre la portada azul; en páginas sin portada azul (404) se ve en color.
   useLayoutEffect(() => { setOverHero(!!document.querySelector('main')?.firstElementChild?.classList.contains('on-blue')) }, [pathname])
-  // La píldora flotante aparece cuando el encabezado sale de la pantalla.
+  // Al bajar, el encabezado (el mismo de la portada) queda fijo con fondo de vidrio azul
   useEffect(() => {
-    const el = headerRef.current
-    if (!el || !('IntersectionObserver' in window)) return
-    const io = new IntersectionObserver(([e]) => setPill(!e.isIntersecting), { rootMargin: '-24px 0px 0px 0px' })
-    io.observe(el)
-    return () => io.disconnect()
+    const on = () => setScrolled(window.scrollY > 24)
+    on(); window.addEventListener('scroll', on, { passive: true })
+    return () => window.removeEventListener('scroll', on)
   }, [])
   useEffect(() => {
     document.documentElement.classList.toggle('menu-open', open)
@@ -105,18 +97,23 @@ export default function Layout() {
   return (
     <>
       {/* Encabezado sobre la portada: logo · accesos rápidos · menú con mega-menú de Servicios */}
-      <header ref={headerRef} className={`site-header ${overHero ? 'over-hero' : ''}`}>
+      <header ref={headerRef} className={`site-header ${overHero ? 'over-hero' : ''} ${scrolled ? 'is-scrolled' : ''}`}>
+        {/* Barra azul fija de borde a borde con los accesos rápidos */}
+        <div className="sh-topbar">
+          <div className="wrap sh-topbar-in">
+            <span className="sh-topbar-info"><span className="pulse" />Urgencias abiertas las 24 horas · {SITE.address}</span>
+            <div className="sh-actions">
+              <Link className="sh-pill blue" to="/solicitar-cita"><span><span className="sh-long">Solicitar </span>cita</span><Icon name="arrow" /></Link>
+              <Link className="sh-pill red" to="/urgencias"><span>Urgencias<span className="sh-long"> 24 h</span></span><Icon name="arrow" /></Link>
+            </div>
+          </div>
+        </div>
         <div className="wrap"><div className="sh-inner">
           <Link to="/" className="logo" aria-label="HUM, ir al inicio">
             <img className="logo-c" src="/img/logo-hum.png" alt="HUM Hospital Regional Universitario Metropolitano" />
             <img className="logo-w" src="/img/logo-hum-white.png" alt="HUM Hospital Regional Universitario Metropolitano" />
           </Link>
           <div className="sh-right">
-            <div className="sh-actions">
-              <a className="sh-pill soft" href={wa} target="_blank" rel="noreferrer"><span>WhatsApp</span><Icon name="arrow" /></a>
-              <Link className="sh-pill blue" to="/solicitar-cita"><span>Solicitar cita</span><Icon name="arrow" /></Link>
-              <Link className="sh-pill red" to="/urgencias"><span>Urgencias 24 h</span><Icon name="arrow" /></Link>
-            </div>
             <nav className="sh-nav" aria-label="Menú principal">
               {MENU.map((m) => {
                 const mega = m.to === '/servicios'
@@ -152,21 +149,9 @@ export default function Layout() {
               })}
             </nav>
           </div>
-          <Link className="sh-pill red sh-urg-m" to="/urgencias"><Icon name="siren" /><span>Urgencias</span></Link>
           <Burger open={open} onClick={() => setOpen(!open)} className="sh-hb" />
         </div></div>
       </header>
-
-      {/* Píldora de vidrio que baja al hacer scroll */}
-      <nav className={`gnav ${pill && !open ? 'is-visible' : ''}`} aria-label="Navegación rápida">
-        <Link className="gn-brand" to="/" aria-label="HUM, ir al inicio"><img src="/img/logo-hum-white.png" alt="" /></Link>
-        <div className="gn-links">
-          {GN_LINKS.map(([to, label]) => <NavLink key={to} to={to}>{label}</NavLink>)}
-        </div>
-        <Link className="gn-cta" to="/solicitar-cita"><span className="gn-full">Solicitar cita</span><span className="gn-short">Cita</span><span className="gn-ic"><Icon name="arrow" /></span></Link>
-        <Link className="gn-urg" to="/urgencias" aria-label="Urgencias 24 horas"><Icon name="siren" /><span>Urgencias</span></Link>
-        <Burger open={open} onClick={() => setOpen(!open)} />
-      </nav>
 
       {/* Menú a pantalla completa */}
       <div id="menu-ov" className={`menu-ov ${open ? 'open' : ''}`} role="dialog" aria-modal="true" aria-label="Menú">
@@ -209,11 +194,24 @@ export default function Layout() {
         </div>
       </div>
 
-      <main><FooterSlot.Provider value={footerSlot}><Outlet /></FooterSlot.Provider></main>
+      <main><Outlet /></main>
 
       <footer className="footer">
         <div className="frame on-blue"><div className="wrap">
-          <div className="footer-closing" ref={setFooterSlot} />
+          {/* Cierre igual en todas las páginas, dentro del mismo bloque azul del footer */}
+          <div className="footer-closing">
+            <div className="closing has-img">
+              <div className="closing-text">
+                <h2>Estamos para cuidarte</h2>
+                <p className="lead">Pide tu cita o conoce cómo el HUM y la Universidad Metropolitana trabajan juntos por tu salud.</p>
+                <div className="btn-row">
+                  <BtnCita variant="white" />
+                  <Btn to="/hospital-universitario" variant="glass" icon="graduation">Hospital universitario</Btn>
+                </div>
+              </div>
+              <img className="closing-img" src="/img/banners/cierre-cita.webp" alt="" loading="lazy" />
+            </div>
+          </div>
           <div className="footer-grid">
             <div>
               <Link to="/" className="footer-logo-w" aria-label="HUM, ir al inicio"><img src="/img/logo-hum-white.png" alt="HUM Hospital Regional Universitario Metropolitano" /></Link>

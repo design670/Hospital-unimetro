@@ -1,5 +1,5 @@
 import Icon from '../components/Icon.jsx'
-import { usePage, PageHero, BtnCita, Btn, Ph, Dato, Closing } from '../components/ui.jsx'
+import { usePage, PageHero, BtnCita, Btn, Ph, Dato } from '../components/ui.jsx'
 import { SITE } from '../site.js'
 
 export default function Quienes() {
@@ -57,14 +57,6 @@ export default function Quienes() {
         </div>
       </section>
 
-      <Closing
-        img="/img/banners/cierre-quienes.webp"
-        title="Estamos para cuidarte"
-        text="Pide tu cita o conoce cómo el HUM y la Universidad Metropolitana trabajan juntos por tu salud."
-      >
-        <BtnCita variant="white" />
-        <Btn to="/hospital-universitario" variant="glass" icon="graduation">Hospital universitario</Btn>
-      </Closing>
     </>
   )
 }

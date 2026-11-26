@@ -28,14 +28,25 @@ export default function Aliados() {
       </section>
 
       <section className="section tight" id="formulario">
-        <div className="wrap split" style={{ alignItems: 'start' }}>
+        <div className="wrap"><div className="cc-block on-blue">
+          <aside className="cc-side">
+            <div className="cc-text">
+              <p className="cc-eyebrow">Contacto comercial</p>
+              <h3>Hablemos de cómo trabajar juntos</h3>
+              <ul className="info-list">
+                <li><Icon name="user" /><Dato>nombre del contacto comercial</Dato></li>
+                <li><Icon name="mail" /><Dato>correo</Dato></li>
+                <li><Icon name="phone" /><Dato>teléfono</Dato></li>
+              </ul>
+            </div>
+            <img className="cc-img" src="/img/banners/contacto-comercial.webp" alt="" width="760" height="1002" loading="lazy" />
+          </aside>
           <div className="form-card">
             <h2>Escríbanos</h2>
             <Form
               submitLabel="Enviar"
               okMessage="Gracias por escribirnos. Un asesor del HUM se pondrá en contacto con usted."
               errorMessage="Revise los campos marcados para poder enviar el mensaje."
-              consentNote={false}
               fields={[
                 { name: 'soy', label: 'Soy', type: 'radio', full: true, required: true, options: ['EPS o aseguradora', 'Empresa', 'Médico remitente'] },
                 { name: 'entidad', label: 'Nombre de la entidad o del médico', full: true, required: true },
@@ -47,15 +58,7 @@ export default function Aliados() {
               ]}
             />
           </div>
-          <div className="panel" style={{ height: 'auto' }}>
-            <h3>Contacto comercial</h3>
-            <ul className="info-list">
-              <li><Icon name="user" /><Dato>nombre del contacto comercial</Dato></li>
-              <li><Icon name="mail" /><Dato>correo</Dato></li>
-              <li><Icon name="phone" /><Dato>teléfono</Dato></li>
-            </ul>
-          </div>
-        </div>
+        </div></div>
       </section>
     </>
   )

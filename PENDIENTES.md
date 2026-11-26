@@ -38,7 +38,7 @@ En «Equipo médico» el listado de `src/data/equipo.js` es de MUESTRA (2026-11-
 especialidad, con nombres, cargos, formación, experiencia y horarios INVENTADOS. Los 15 retratos
 `public/img/equipo/equipo-01…15.webp` son de IA; los otros 26 muestran un avatar con iniciales. No son médicos del HUM:
 no publicar así; reemplazar por el listado oficial y fotos reales de especialistas con autorización.
-Los banners con persona recortada (`public/img/banners/seguridad, aliados, docencia, participa, cierre-cita, cierre-equipo, cierre-servicios, cierre-quienes, cierre-universitario.webp`) salen de esos
+Los banners con persona recortada (`public/img/banners/seguridad, aliados, docencia, participa, cierre-cita, cierre-equipo, cierre-servicios, cierre-quienes, cierre-universitario, contacto-comercial.webp`) salen de esos
 mismos retratos de IA, con el fondo quitado. Reemplazar por fotos reales recortadas (PNG o WebP con fondo transparente).
 
 ## Técnico

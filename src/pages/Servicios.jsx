@@ -1,5 +1,5 @@
 import Icon from '../components/Icon.jsx'
-import { usePage, PageHero, BtnCita, BtnWa, Btn, Closing, AvisoInformativo } from '../components/ui.jsx'
+import { usePage, PageHero, BtnCita, BtnWa, Btn, AvisoInformativo } from '../components/ui.jsx'
 import { ESPECIALIDADES } from '../site.js'
 
 const CIRUGIAS = ['Cirugía general', 'Cirugía gastrointestinal', 'Cirugía de tórax', 'Cirugía de cabeza y cuello', 'Cirugía de la mano', 'Cirugía plástica y estética', 'Cirugía ortopédica', 'Cirugía ginecológica', 'Cirugía urológica', 'Cirugía pediátrica', 'Cirugía dermatológica', 'Cirugía maxilofacial', 'Cirugía oral']
@@ -72,9 +72,6 @@ export default function Servicios() {
         </div>
       </section>
 
-      <Closing img="/img/banners/cierre-servicios.webp" title="¿No encuentras lo que buscas?" text="Escríbenos y te orientamos. Algunos servicios requieren orden médica o autorización de tu EPS; te lo confirmamos al solicitar tu cita.">
-        <BtnCita variant="white" /><BtnWa desde="servicios y especialidades" />
-      </Closing>
       <AvisoInformativo />
     </>
   )
