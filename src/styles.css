@@ -1147,3 +1147,9 @@ html { scroll-padding-top: calc(var(--topbar-h) + var(--header-h) + 40px); }
 .doc-cta .btn { min-height: 42px; font-size: 0.86rem; }
 .doc-cta .btn.btn-cta { padding: 0 5px 0 18px; gap: 10px; }
 .doc-cta .btn-arrow { width: 32px; height: 32px; }
+
+/* Al bajar, la zona del encabezado (barra + menú) queda con fondo sólido:
+   el contenido desaparece limpio por debajo en vez de asomarse a los lados del menú y cortarse */
+.site-header { transition: background-color .3s ease, box-shadow .3s ease; }
+.site-header.is-scrolled { background: var(--bg); padding-bottom: 10px; box-shadow: 0 1px 0 var(--line); }
+@media (max-width: 720px) { .site-header.is-scrolled { padding-bottom: 8px; } }
