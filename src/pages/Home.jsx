@@ -74,11 +74,6 @@ export default function Home() {
 
             {/* Opinión o queja */}
             <Link to="/atencion-al-usuario" className="bt bt-b">
-              <div className="bt-chips">
-                <span>Petición <i>+</i></span>
-                <span className="on">Sugerencia</span>
-                <span>Felicitación <i>+</i></span>
-              </div>
               <div className="bt-foot">
                 <h3>Quiero dar una opinión o presentar una queja.</h3>
                 <p>Estamos para escucharte.</p>
@@ -121,13 +116,6 @@ export default function Home() {
                 <h3>Soy EPS, empresa o médico.</h3>
                 <p>Trabajemos juntos.</p>
                 <span className="link-arrow">EPS, empresas y remitentes<Icon name="arrow" /></span>
-              </div>
-              <div className="bt-orbit" aria-hidden="true">
-                <i className="r1" /><i className="r2" /><i className="r3" />
-                <span className="o1"><Icon name="shield" /></span>
-                <span className="o2"><Icon name="building" /></span>
-                <span className="o3"><Icon name="stethoscope" /></span>
-                <span className="o4"><Icon name="handshake" /></span>
               </div>
             </Link>
           </div>
