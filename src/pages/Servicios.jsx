@@ -72,7 +72,7 @@ export default function Servicios() {
         </div>
       </section>
 
-      <Closing title="¿No encuentras lo que buscas?" text="Escríbenos y te orientamos. Algunos servicios requieren orden médica o autorización de tu EPS; te lo confirmamos al solicitar tu cita.">
+      <Closing img="/img/banners/cierre-servicios.webp" title="¿No encuentras lo que buscas?" text="Escríbenos y te orientamos. Algunos servicios requieren orden médica o autorización de tu EPS; te lo confirmamos al solicitar tu cita.">
         <BtnCita variant="white" /><BtnWa desde="servicios y especialidades" />
       </Closing>
       <AvisoInformativo />

@@ -57,9 +57,13 @@ export default function Quienes() {
         </div>
       </section>
 
-      <Closing>
-        <Btn to="/hospital-universitario" variant="glass" icon="graduation">Conoce el hospital universitario</Btn>
+      <Closing
+        img="/img/banners/cierre-quienes.webp"
+        title="Estamos para cuidarte"
+        text="Pide tu cita o conoce cómo el HUM y la Universidad Metropolitana trabajan juntos por tu salud."
+      >
         <BtnCita variant="white" />
+        <Btn to="/hospital-universitario" variant="glass" icon="graduation">Hospital universitario</Btn>
       </Closing>
     </>
   )

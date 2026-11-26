@@ -1,6 +1,7 @@
 import Icon from '../components/Icon.jsx'
 import { usePage, PageHero, BtnCita, Btn, Ph, Dato, Closing } from '../components/ui.jsx'
 import { SITE } from '../site.js'
+import TarjetaColor from '../components/TarjetaColor.jsx'
 
 export default function Universitario() {
   usePage('Hospital universitario | HUM y Universidad Metropolitana', 'El HUM y la Universidad Metropolitana trabajan juntos en la atención, la formación, la investigación y la proyección social, siempre con atención supervisada.')
@@ -21,41 +22,39 @@ export default function Universitario() {
 
       <section className="section tight">
         <div className="wrap">
-          <div className="band blue on-blue">
-            <div>
+          <div className="band blue on-blue has-person">
+            <div className="band-text">
               <h2>Atención supervisada, <em>siempre</em></h2>
               <p className="lead">En el HUM, los estudiantes de pregrado y posgrado del área de la salud hacen sus prácticas acompañados y supervisados por profesionales de la salud. La formación nunca está por encima de tu seguridad ni de tu bienestar. Aquí no hay experimentación ni atención sin supervisión.</p>
             </div>
-            <span className="ico" style={{ width: 96, height: 96, borderRadius: 28, background: 'rgba(255,255,255,.2)', display: 'grid', placeItems: 'center', color: '#fff' }}><Icon name="shield" style={{ width: 44, height: 44 }} /></span>
+            <img className="band-person" src="/img/banners/docencia.webp" alt="" width="760" height="1007" loading="lazy" />
           </div>
         </div>
       </section>
 
       <section className="section">
         <div className="wrap grid g-3">
-          <div className="card">
-            <span className="ico"><Icon name="graduation" /></span>
-            <h3>¿Quiénes hacen prácticas en el HUM?</h3>
+          <TarjetaColor tono="marino" icon="graduation" title="¿Quiénes hacen prácticas en el HUM?">
             <p>Estudiantes y residentes de programas de salud, como medicina y especialidades médico-quirúrgicas, enfermería, trabajo social, psicología, fisioterapia y nutrición.</p>
-          </div>
-          <div className="card">
-            <span className="ico"><Icon name="chat" /></span>
-            <h3>Si tienes preguntas</h3>
-            <p>Si quieres saber cómo participan los estudiantes en tu atención, pregúntale al profesional que te atiende o escríbenos a <a href={`mailto:${SITE.siau}`} style={{ color: 'var(--blue)', fontWeight: 600 }}>{SITE.siau}</a>.</p>
-          </div>
-          <div className="card">
-            <span className="ico"><Icon name="flask" /></span>
-            <h3>Investigación con respeto</h3>
+          </TarjetaColor>
+          <TarjetaColor tono="cielo" icon="chat" title="Si tienes preguntas" href={`mailto:${SITE.siau}`} linkLabel={`Escribir a ${SITE.siau}`}>
+            <p>Si quieres saber cómo participan los estudiantes en tu atención, pregúntale al profesional que te atiende o escríbenos a <a href={`mailto:${SITE.siau}`}>{SITE.siau}</a>.</p>
+          </TarjetaColor>
+          <TarjetaColor tono="niebla" icon="flask" title="Investigación con respeto">
             <p>La investigación en el HUM se realiza con respeto por la ética médica, la privacidad y el consentimiento de las personas.</p>
-          </div>
+          </TarjetaColor>
         </div>
       </section>
 
-      <Closing>
+      <Closing
+        img="/img/banners/cierre-universitario.webp"
+        title="Te atienden profesionales que siguen aprendiendo"
+        text="Solicita tu cita en el HUM o conoce más sobre la Universidad Metropolitana."
+      >
         <BtnCita variant="white" />
         <Btn href="#" variant="glass" icon="graduation">Conocer la Universidad Metropolitana</Btn>
       </Closing>
-      <div className="wrap center small" style={{ textAlign: 'center', marginTop: -40, marginBottom: 40 }}>Enlace pendiente: <Dato>enlace al sitio de la Universidad</Dato></div>
+      <div className="wrap center small" style={{ textAlign: 'center', marginTop: 8 }}>Enlace pendiente: <Dato>enlace al sitio de la Universidad</Dato></div>
     </>
   )
 }

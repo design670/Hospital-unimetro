@@ -62,11 +62,12 @@ export default function Atencion() {
 
       <section className="section tight">
         <div className="wrap">
-          <div className="band light">
-            <div>
+          <div className="band light has-person">
+            <div className="band-text">
               <h2>Participa <em>con nosotros</em></h2>
               <p className="lead">Tu opinión nos ayuda a mejorar. <Dato>Información sobre la asociación de usuarios y los espacios de participación social, si el hospital los tiene.</Dato></p>
             </div>
+            <img className="band-person" src="/img/banners/participa.webp" alt="" width="760" height="973" loading="lazy" />
           </div>
         </div>
       </section>

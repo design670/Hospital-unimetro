@@ -1,5 +1,6 @@
 import Icon from '../components/Icon.jsx'
 import Form from '../components/Form.jsx'
+import TarjetaColor from '../components/TarjetaColor.jsx'
 import { usePage, PageHero, Btn, Dato } from '../components/ui.jsx'
 
 export default function Aliados() {
@@ -12,23 +13,17 @@ export default function Aliados() {
 
       <section className="section">
         <div className="wrap grid g-3">
-          <div className="card">
-            <span className="ico"><Icon name="shield" /></span>
-            <h3>EPS y aseguradoras</h3>
+          <TarjetaColor tono="cielo" icon="shield" title="EPS y aseguradoras" href="#formulario" linkLabel="Escribir al HUM como EPS o aseguradora">
             <p>Ofrecemos a los afiliados de su entidad atención en urgencias, hospitalización, cirugía, cuidado intensivo e intermedio, consulta con especialistas, apoyo diagnóstico, terapias y rehabilitación. Para convenios, autorizaciones y contratación, escríbanos y le indicamos el camino.</p>
-            <p style={{ marginTop: 'auto' }}><strong>EPS y aseguradoras con convenio:</strong> <Dato>lista confirmada por el hospital</Dato></p>
-          </div>
-          <div className="card">
-            <span className="ico"><Icon name="building" /></span>
-            <h3>Empresas</h3>
+            <p><strong>EPS y aseguradoras con convenio:</strong> <Dato>lista confirmada por el hospital</Dato></p>
+          </TarjetaColor>
+          <TarjetaColor tono="marino" icon="building" title="Empresas" href="#formulario" linkLabel="Escribir al HUM como empresa">
             <p>Si su empresa quiere ofrecer a sus colaboradores atención médica con especialistas, exámenes y servicios de medicina laboral, contáctenos y le presentamos nuestra propuesta.</p>
-          </div>
-          <div className="card">
-            <span className="ico"><Icon name="stethoscope" /></span>
-            <h3>Médicos remitentes</h3>
+          </TarjetaColor>
+          <TarjetaColor tono="niebla" icon="stethoscope" title="Médicos remitentes" href="#formulario" linkLabel="Escribir al HUM como médico remitente">
             <p>Si usted remite a un paciente al HUM, déjenos sus datos y el servicio que necesita. Nuestro equipo le confirmará cómo programar la atención.</p>
-            <div className="note" style={{ marginTop: 'auto' }}><Icon name="alert" /><p>No escriba datos clínicos del paciente en este formulario. El equipo del HUM los pedirá por un canal seguro.</p></div>
-          </div>
+            <div className="note"><Icon name="alert" /><p>No escriba datos clínicos del paciente en este formulario. El equipo del HUM los pedirá por un canal seguro.</p></div>
+          </TarjetaColor>
         </div>
       </section>
 

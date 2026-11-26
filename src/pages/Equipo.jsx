@@ -1,19 +1,45 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Icon from '../components/Icon.jsx'
-import { usePage, PageHero, BtnCita, BtnWa, Dato, Closing } from '../components/ui.jsx'
+import Select from '../components/Select.jsx'
+import { usePage, PageHero, BtnCita, BtnWa, Closing } from '../components/ui.jsx'
 import { TODAS_ESPECIALIDADES } from '../site.js'
+import { EQUIPO, iniciales } from '../data/equipo.js'
 
-// Sin datos reales todavía: cada profesional aparece solo si autorizó por escrito la publicación.
-// Estas tarjetas de muestra solo enseñan cómo se verá el listado; se reemplazan por el listado oficial.
-const MUESTRA = ['Medicina interna', 'Cardiología', 'Ginecobstetricia', 'Pediatría', 'Cirugía general', 'Ortopedia y traumatología'].map((esp, i) => ({ id: i, esp, muestra: true }))
+// Cada profesional aparece solo si autorizó por escrito la publicación.
+// El listado actual (src/data/equipo.js) es de MUESTRA: fotos de IA y datos inventados.
+
+const POR_PAGINA = 12
+const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+
+function Foto({ d, className, size }) {
+  return d.foto
+    ? <img className={className} src={d.foto} alt="" loading="lazy" width={size} height={size} />
+    : <span className={`${className} doc-initials`} aria-hidden="true">{iniciales(d.nombre)}</span>
+}
 
 export default function Equipo() {
   usePage('Equipo médico y especialistas | HUM', 'Conoce a los especialistas del HUM en Barranquilla y solicita tu cita.')
   const [q, setQ] = useState('')
   const [esp, setEsp] = useState('')
   const [open, setOpen] = useState(null)
+  const [visibles, setVisibles] = useState(POR_PAGINA)
 
-  const list = useMemo(() => MUESTRA.filter((d) => (!esp || d.esp === esp) && (!q || 'nombre del especialista'.includes(q.toLowerCase()))), [q, esp])
+  const list = useMemo(() => {
+    const t = norm(q.trim())
+    return EQUIPO.filter((d) => (!esp || d.esp === esp) && (!t || norm(d.nombre).includes(t) || norm(d.esp).includes(t)))
+  }, [q, esp])
+
+  useEffect(() => setVisibles(POR_PAGINA), [q, esp])
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e) => { if (e.key === 'Escape') setOpen(null) }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [open])
+
+  const filtrando = q.trim() || esp
+  const mostrados = list.slice(0, visibles)
 
   return (
     <>
@@ -22,31 +48,48 @@ export default function Equipo() {
       <section className="section tight">
         <div className="wrap">
           <div className="search-bar" role="search">
-            <div className="field"><label className="sr" htmlFor="q" style={{ position: 'absolute', left: -9999 }}>Buscar por nombre</label><input id="q" placeholder="Buscar por nombre" value={q} onChange={(e) => setQ(e.target.value)} /></div>
+            <div className="field"><label className="sr" htmlFor="q" style={{ position: 'absolute', left: -9999 }}>Buscar por nombre o especialidad</label><input id="q" placeholder="Buscar por nombre o especialidad" value={q} onChange={(e) => setQ(e.target.value)} /></div>
             <div className="field">
-              <select aria-label="Especialidad" value={esp} onChange={(e) => setEsp(e.target.value)}>
-                <option value="">Todas las especialidades</option>
-                {TODAS_ESPECIALIDADES.map((e) => <option key={e}>{e}</option>)}
-              </select>
+              <Select ariaLabel="Especialidad" value={esp} onChange={setEsp} placeholder="Todas las especialidades" options={TODAS_ESPECIALIDADES} />
             </div>
           </div>
 
-          <div style={{ marginTop: 40 }}>
+          {filtrando && (
+            <p className="doc-count" role="status">
+              <span>
+                {list.length === 1 ? '1 especialista' : `${list.length} especialistas`}
+                {esp && <> en <strong>{esp}</strong></>}
+              </span>
+              <button type="button" className="doc-clear" onClick={() => { setQ(''); setEsp('') }}>Ver todo el equipo</button>
+            </p>
+          )}
+
+          <div style={{ marginTop: 24 }}>
             {list.length ? (
-              <div className="grid g-3">
-                {list.map((d) => (
-                  <div key={d.id} className="card doc-card">
-                    <span className="avatar"><Icon name="user" /></span>
-                    <h3><Dato>Nombre</Dato></h3>
-                    <p className="spec">{d.esp}</p>
-                    <p><Dato>Cargo</Dato></p>
-                    <div className="btn-row" style={{ marginTop: 'auto' }}>
-                      <button className="btn btn-ghost" onClick={() => setOpen(d)}>Ver ficha</button>
-                      <BtnCita />
-                    </div>
+              <>
+                <div className="grid g-3">
+                  {mostrados.map((d) => (
+                    <article key={d.id} className="doc-card">
+                      <button className="doc-photo" onClick={() => setOpen(d)} aria-label={`Ver ficha de ${d.nombre}, ${d.esp}`}>
+                        <Foto d={d} className="doc-img" size={600} />
+                        <span className="doc-go"><Icon name="arrowUpRight" /></span>
+                      </button>
+                      <div className="doc-body">
+                        <h3>{d.nombre}</h3>
+                        <p className="spec">{d.esp}</p>
+                        <p className="doc-role">{d.cargo}</p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+                {list.length > visibles && (
+                  <div className="btn-row center" style={{ marginTop: 40 }}>
+                    <button type="button" className="btn btn-ghost" onClick={() => setVisibles((v) => v + POR_PAGINA)}>
+                      <span>Ver más especialistas ({list.length - visibles})</span><Icon name="plus" />
+                    </button>
                   </div>
-                ))}
-              </div>
+                )}
+              </>
             ) : (
               <div className="empty">
                 <p className="lead">No encontramos resultados. Escríbenos por WhatsApp y te ayudamos a encontrar a tu especialista.</p>
@@ -57,22 +100,29 @@ export default function Equipo() {
         </div>
       </section>
 
-      <Closing text="Los horarios de cada especialista pueden cambiar. Al solicitar tu cita te confirmamos con quién y cuándo serás atendido.">
+      <Closing img="/img/banners/cierre-equipo.webp" text="Los horarios de cada especialista pueden cambiar. Al solicitar tu cita te confirmamos con quién y cuándo serás atendido.">
         <BtnCita variant="white" />
       </Closing>
 
       {open && (
         <div className="modal-back" onClick={() => setOpen(null)}>
-          <div className="modal" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
+          <div className="modal" role="dialog" aria-modal="true" aria-label={open.nombre} onClick={(e) => e.stopPropagation()}>
             <button className="x" aria-label="Cerrar" onClick={() => setOpen(null)}><Icon name="close" /></button>
-            <span className="avatar" style={{ width: 72, height: 72, borderRadius: '50%', background: 'linear-gradient(160deg,#cfe2f4,#8db6dc)', display: 'grid', placeItems: 'center', color: '#fff' }}><Icon name="user" style={{ width: 32 }} /></span>
-            <h2 style={{ fontSize: '1.6rem', marginTop: 18 }}><Dato>Nombre</Dato></h2>
+            <div className="modal-head">
+              <Foto d={open} className="modal-photo" size={96} />
+              <div>
+                <h2>{open.nombre}</h2>
+                <p className="spec">{open.esp}</p>
+              </div>
+            </div>
+            <p className="modal-lead">{open.enfoque}</p>
             <dl>
-              <dt>Cargo</dt><dd><Dato>Cargo</Dato></dd>
-              <dt>Especialidad</dt><dd>{open.esp}</dd>
-              <dt>Formación</dt><dd><Dato>título y universidad</Dato></dd>
+              <dt>Cargo</dt><dd>{open.cargo}</dd>
+              <dt>Formación</dt><dd>{open.formacion}</dd>
+              <dt>Experiencia</dt><dd>{open.experiencia}</dd>
+              <dt>Consulta</dt><dd>{open.atiende}</dd>
             </dl>
-            <BtnCita>Solicitar cita con [nombre]</BtnCita>
+            <BtnCita>Solicitar cita con {open.nombre}</BtnCita>
           </div>
         </div>
       )}

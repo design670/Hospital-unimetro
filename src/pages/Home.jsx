@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Icon from '../components/Icon.jsx'
+import Carousel from '../components/Carousel.jsx'
 import { usePage, Btn, BtnCita, BtnUrgencias, BtnLlegar, Arrow, Ph, Closing } from '../components/ui.jsx'
 import { SITE } from '../site.js'
 
@@ -30,11 +31,11 @@ export default function Home() {
       {/* 1 · Portada */}
       <section className="hero frame grad on-blue">
         <div className="wrap">
-          <h1>Atención médica especializada, <b>cercana y humana</b> en Barranquilla</h1>
+          <h1>Atención médica especializada, cercana <span className="soft">y humana en Barranquilla</span></h1>
           <p className="lead">Urgencias las 24 horas, cirugía, hospitalización y consulta con especialistas, con el respaldo de la Universidad Metropolitana.</p>
           <div className="btn-row">
             <BtnCita variant="white" />
-            <Link className="btn btn-glass" to="/urgencias"><span className="dot-red" /><span>Urgencias 24 horas</span></Link>
+            <Link className="btn btn-glass hero-secondary" to="/urgencias"><span>Urgencias 24 horas</span></Link>
           </div>
 
           <div className="hero-stage">
@@ -151,7 +152,7 @@ export default function Home() {
               </Link>
             ))}
           </div>
-          <div style={{ marginTop: 40 }}><Btn to="/servicios" variant="ghost" icon="arrow">Ver todos los servicios y especialidades</Btn></div>
+          <div className="btn-row center" style={{ marginTop: 40 }}><Btn to="/servicios" variant="ghost" icon="arrow">Ver todos los servicios y especialidades</Btn></div>
         </div>
       </section>
 
@@ -207,21 +208,25 @@ export default function Home() {
 
       {/* 8 · Seguridad del paciente  ·  9 · Aliados */}
       <section className="section tight" style={{ paddingTop: 0 }}>
-        <div className="wrap grid" style={{ gap: 20 }}>
-          <div className="band blue on-blue">
-            <div>
+        <div className="wrap">
+          <Carousel label="Destacados del HUM">
+          <div className="band blue on-blue has-person">
+            <div className="band-text">
               <h2>Tu seguridad <em>es lo primero</em></h2>
               <p className="lead">En el HUM trabajamos para que cada atención sea segura, respetuosa y centrada en ti. Si algo no salió como esperabas, queremos saberlo.</p>
+              <div className="btn-row"><Btn to="/atencion-al-usuario" variant="white">Atención al usuario</Btn></div>
             </div>
-            <Btn to="/atencion-al-usuario" variant="white" icon="chat">Atención al usuario</Btn>
+            <img className="band-person" src="/img/banners/seguridad.webp" alt="" width="760" height="931" />
           </div>
-          <div className="band light">
-            <div>
+          <div className="band light has-person">
+            <div className="band-text">
               <h2>Trabajemos <em>juntos</em></h2>
               <p className="lead">Si eres EPS, aseguradora, empresa o médico que remite pacientes, te contamos cómo trabajar con el HUM.</p>
+              <div className="btn-row"><Btn to="/aliados">Conoce más</Btn></div>
             </div>
-            <Btn to="/aliados" icon="handshake">Conoce más</Btn>
+            <img className="band-person" src="/img/banners/aliados.webp" alt="" width="760" height="817" />
           </div>
+          </Carousel>
         </div>
       </section>
 

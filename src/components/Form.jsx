@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Icon from './Icon.jsx'
+import Select from './Select.jsx'
+import { BtnArrow } from './ui.jsx'
 
 /**
  * Formulario genérico. Sin backend todavía: valida en el navegador y muestra el mensaje de envío.
@@ -38,10 +40,7 @@ export default function Form({ fields, submitLabel = 'Enviar', okMessage, errorM
           let input
           if (f.type === 'select') {
             input = (
-              <select id={id} value={values[f.name] || ''} onChange={(e) => set(f.name, e.target.value)}>
-                <option value="">Selecciona una opción</option>
-                {f.options.map((o) => <option key={o}>{o}</option>)}
-              </select>
+              <Select id={id} value={values[f.name] || ''} onChange={(v) => set(f.name, v)} placeholder="Selecciona una opción" options={f.options} />
             )
           } else if (f.type === 'radio') {
             input = (
@@ -56,9 +55,7 @@ export default function Form({ fields, submitLabel = 'Enviar', okMessage, errorM
           } else if (f.type === 'doc') {
             input = (
               <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr', gap: 10 }}>
-                <select aria-label="Tipo de documento" value={values[f.name + '_tipo'] || 'CC'} onChange={(e) => set(f.name + '_tipo', e.target.value)}>
-                  {['CC', 'TI', 'CE', 'PA', 'RC', 'PPT'].map((t) => <option key={t}>{t}</option>)}
-                </select>
+                <Select ariaLabel="Tipo de documento" value={values[f.name + '_tipo'] || 'CC'} onChange={(v) => set(f.name + '_tipo', v)} options={['CC', 'TI', 'CE', 'PA', 'RC', 'PPT']} />
                 <input id={id} inputMode="numeric" value={values[f.name] || ''} onChange={(e) => set(f.name, e.target.value)} />
               </div>
             )
@@ -83,7 +80,7 @@ export default function Form({ fields, submitLabel = 'Enviar', okMessage, errorM
         </div>
       </div>
       <div className="form-actions">
-        <button className="btn btn-primary" type="submit"><span>{submitLabel}</span><Icon name="arrow" /></button>
+        <button className="btn btn-primary btn-cta" type="submit"><span>{submitLabel}</span><BtnArrow /></button>
       </div>
       {status === 'ok' && <div className="form-msg ok" role="status"><Icon name="check" /><span>{okMessage}</span></div>}
       {status === 'bad' && <div className="form-msg bad" role="alert"><Icon name="alert" /><span>{errorMessage}</span></div>}

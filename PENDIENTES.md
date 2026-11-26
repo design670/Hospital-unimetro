@@ -1,6 +1,6 @@
 # HUM · Pendientes
 
-Prototipo en Vite + React. Vista previa: `hum-web` (puerto 5208). Textos tomados de
+Prototipo en Vite + React. Vista previa: `hum-2027` (puerto 5211). Textos tomados de
 `material/HUM · Textos y estructura de la web - 2026 universidad metropolitana.docx`.
 
 Dirección visual: colores y Montserrat del HUM, con el estilo de las referencias que eligió el cliente
@@ -34,7 +34,14 @@ Se ven en el sitio resaltados en amarillo con [corchetes].
 Las imágenes con rótulo "Fotografía real: ..." son marcadores. Faltan fotos reales de la fachada y del equipo.
 En «¿Qué necesitas hoy?» las fotos `public/img/home/urgencias.jpg` y `especialista.jpg` son provisionales,
 creadas con IA (2026-11-23); reemplazarlas por fotos reales del HUM cuando lleguen (mismo nombre de archivo).
+En «Equipo médico» el listado de `src/data/equipo.js` es de MUESTRA (2026-11-26): 41 profesionales, uno por
+especialidad, con nombres, cargos, formación, experiencia y horarios INVENTADOS. Los 15 retratos
+`public/img/equipo/equipo-01…15.webp` son de IA; los otros 26 muestran un avatar con iniciales. No son médicos del HUM:
+no publicar así; reemplazar por el listado oficial y fotos reales de especialistas con autorización.
+Los banners con persona recortada (`public/img/banners/seguridad, aliados, docencia, participa, cierre-cita, cierre-equipo, cierre-servicios, cierre-quienes, cierre-universitario.webp`) salen de esos
+mismos retratos de IA, con el fondo quitado. Reemplazar por fotos reales recortadas (PNG o WebP con fondo transparente).
 
 ## Técnico
 - Los formularios validan en el navegador y muestran el mensaje de envío, pero no envían a ningún lado: falta conectar el destino (correo o CRM).
 - El banner de cookies solo guarda la elección; falta la configuración real cuando Jurídica defina las cookies.
+
