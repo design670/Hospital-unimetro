@@ -43,7 +43,7 @@ export default function Equipo() {
 
   return (
     <>
-      <PageHero title="Nuestro equipo médico" lead="Conoce a los especialistas que te atienden en el HUM. Busca por nombre o por especialidad." />
+      <PageHero img="/img/banners/hero-equipo.jpg" title="Nuestro equipo médico" lead="Conoce a los especialistas que te atienden en el HUM. Busca por nombre o por especialidad." />
 
       <section className="section tight">
         <div className="wrap">

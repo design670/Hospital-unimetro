@@ -39,7 +39,7 @@ export default function Home() {
           </div>
 
           <div className="hero-stage">
-            <Ph label="Fotografía real de la fachada o del equipo del hospital" />
+            <img className="hero-photo" src="/img/banners/hero-fachada.jpg" alt="Fachada del Hospital Regional Universitario Metropolitano" />
             <div className="glass float-chip c1">
               <span className="ic"><Icon name="graduation" /></span>
               <span>Hospital universitario<br />Universidad Metropolitana</span>

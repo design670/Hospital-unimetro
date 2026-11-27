@@ -50,9 +50,11 @@ export function Ph({ label, light, style, className = '' }) {
   )
 }
 
-export function PageHero({ title, lead, children, crumbs, variant = '' }) {
+/** Portada de páginas internas: texto a la izquierda, centrado en vertical. `img` (opcional) pone una
+    foto de fondo con un degradado oscuro a la izquierda para que el texto se lea. */
+export function PageHero({ title, lead, children, crumbs, variant = '', img }) {
   return (
-    <section className={`page-hero frame on-blue ${variant === 'alert' ? 'alert-grad' : 'grad'}`}>
+    <section className={`page-hero frame on-blue ${variant === 'alert' ? 'alert-grad' : 'grad'} ${img ? 'has-img' : ''}`} style={img ? { '--hero-img': `url(${img})` } : undefined}>
       <div className="wrap">
         <h1>{title}</h1>
         {lead && <p className="lead">{lead}</p>}

@@ -23,7 +23,7 @@ export default function Servicios() {
   usePage('Servicios y especialidades en Barranquilla | HUM', 'Urgencias, hospitalización, cirugía, consulta con especialistas, laboratorio, imágenes, terapias y vacunación en el HUM, Barranquilla.')
   return (
     <>
-      <PageHero title="Servicios y especialidades" lead="En el HUM encuentras urgencias, hospitalización, cirugía, consulta con especialistas, apoyo diagnóstico y terapias en un mismo lugar.">
+      <PageHero img="/img/banners/hero-servicios.jpg" title="Servicios y especialidades" lead="En el HUM encuentras urgencias, hospitalización, cirugía, consulta con especialistas, apoyo diagnóstico y terapias en un mismo lugar.">
         <div className="btn-row"><BtnCita /><BtnWa desde="servicios y especialidades" /></div>
       </PageHero>
 

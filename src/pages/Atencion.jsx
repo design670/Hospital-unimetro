@@ -8,7 +8,7 @@ export default function Atencion() {
   usePage('Atención al usuario (SIAU) | HUM', 'Presenta una petición, queja, reclamo, sugerencia, denuncia o felicitación al Hospital Regional Universitario Metropolitano (HUM). Te respondemos.')
   return (
     <>
-      <PageHero title="Atención al usuario" lead="El Sistema de Información y Atención al Usuario (SIAU) está para escucharte. Cuéntanos si necesitas una orientación, si algo no salió bien, si tienes una idea para mejorar o si quieres felicitar a alguien del equipo.">
+      <PageHero img="/img/banners/hero-atencion.jpg" title="Atención al usuario" lead="El Sistema de Información y Atención al Usuario (SIAU) está para escucharte. Cuéntanos si necesitas una orientación, si algo no salió bien, si tienes una idea para mejorar o si quieres felicitar a alguien del equipo.">
         <div className="note"><Icon name="alert" /><p>Este canal no es para urgencias. Si tienes una urgencia, ve a <Link to="/urgencias">Urgencias</Link>, abierta las 24 horas, o llama al <TelUrgencias />.</p></div>
       </PageHero>
 

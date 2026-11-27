@@ -9,7 +9,7 @@ export default function Urgencias() {
   usePage('Urgencias 24 horas en Barranquilla | HUM', 'Servicio de urgencias del HUM en Barranquilla, abierto las 24 horas. Conoce cuándo acudir, qué llevar y cómo llegar.')
   return (
     <>
-      <PageHero variant="alert" title="Urgencias, las 24 horas" crumbs="Urgencias" lead="En el HUM atendemos urgencias todos los días, a cualquier hora.">
+      <PageHero variant="alert" img="/img/banners/hero-urgencias.jpg" title="Urgencias, las 24 horas" crumbs="Urgencias" lead="En el HUM atendemos urgencias todos los días, a cualquier hora.">
         <ul className="info-list" style={{ color: '#fff' }}>
           <li><Icon name="pin" /><span>{SITE.address}</span></li>
           <li><Icon name="phone" /><span>Teléfono: <TelUrgencias /></span></li>

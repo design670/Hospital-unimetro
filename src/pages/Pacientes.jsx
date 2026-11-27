@@ -13,7 +13,7 @@ export default function Pacientes() {
   usePage('Guía para pacientes y visitantes | HUM', 'Qué llevar, horarios de visita, derechos y deberes y preguntas frecuentes para pacientes y familias del HUM, Barranquilla.')
   return (
     <>
-      <PageHero title="Pacientes y visitantes" lead="Aquí encuentras lo que necesitas saber antes, durante y después de tu visita al HUM." />
+      <PageHero img="/img/banners/hero-pacientes.jpg" title="Pacientes y visitantes" lead="Aquí encuentras lo que necesitas saber antes, durante y después de tu visita al HUM." />
 
       <nav className="toc" aria-label="Índice">
         <div className="wrap"><div className="toc-pill">{INDICE.map(([id, l]) => <a key={id} href={`#${id}`}>{l}</a>)}</div></div>

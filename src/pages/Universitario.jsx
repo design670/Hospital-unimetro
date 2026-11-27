@@ -7,7 +7,7 @@ export default function Universitario() {
   usePage('Hospital universitario | HUM y Universidad Metropolitana', 'El HUM y la Universidad Metropolitana trabajan juntos en la atención, la formación, la investigación y la proyección social, siempre con atención supervisada.')
   return (
     <>
-      <PageHero title="Hospital universitario" lead="El HUM y la Universidad Metropolitana trabajan juntos para cuidar la salud de las personas y formar a los profesionales que la cuidarán mañana." />
+      <PageHero img="/img/banners/hero-universitario.jpg" title="Hospital universitario" lead="El HUM y la Universidad Metropolitana trabajan juntos para cuidar la salud de las personas y formar a los profesionales que la cuidarán mañana." />
 
       <section className="section">
         <div className="wrap split">

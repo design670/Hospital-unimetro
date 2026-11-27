@@ -7,7 +7,7 @@ export default function Aliados() {
   usePage('EPS, empresas y médicos remitentes | HUM', 'Información para EPS, aseguradoras, empresas y médicos remitentes que quieren trabajar con el Hospital Regional Universitario Metropolitano (HUM).')
   return (
     <>
-      <PageHero title="Trabajemos juntos" crumbs="EPS, empresas y remitentes" lead="El HUM trabaja con EPS, aseguradoras, empresas y médicos que remiten a sus pacientes. Escríbenos y un asesor te contactará.">
+      <PageHero img="/img/banners/hero-aliados.jpg" title="Trabajemos juntos" crumbs="EPS, empresas y remitentes" lead="El HUM trabaja con EPS, aseguradoras, empresas y médicos que remiten a sus pacientes. Escríbenos y un asesor te contactará.">
         <div className="btn-row"><Btn href="#formulario" variant="white" icon="mail">Escribir al HUM</Btn></div>
       </PageHero>
 

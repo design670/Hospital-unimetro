@@ -6,7 +6,7 @@ export default function Quienes() {
   usePage('Quiénes somos | HUM Hospital Regional Universitario Metropolitano', 'Conoce al Hospital Regional Universitario Metropolitano (HUM) de Barranquilla: servicios, misión, visión y compromiso con la calidad y la seguridad del paciente.')
   return (
     <>
-      <PageHero title="Quiénes somos" />
+      <PageHero img="/img/banners/hero-quienes.jpg" title="Quiénes somos" />
 
       <section className="section">
         <div className="wrap split">

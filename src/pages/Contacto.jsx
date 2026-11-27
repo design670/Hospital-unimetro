@@ -6,7 +6,7 @@ export default function Contacto() {
   usePage('Contacto y cómo llegar | HUM Hospital Regional Universitario Metropolitano', 'Dirección, teléfonos, correos, horarios y cómo llegar al Hospital Regional Universitario Metropolitano (HUM), en Barranquilla.')
   return (
     <>
-      <PageHero title="Contacto y ubicación" lead="Estamos en Barranquilla. Aquí encuentras cómo llegar y cómo comunicarte con nosotros.">
+      <PageHero img="/img/banners/hero-fachada.jpg" title="Contacto y ubicación" lead="Estamos en Barranquilla. Aquí encuentras cómo llegar y cómo comunicarte con nosotros.">
         <AvisoUrgencia />
       </PageHero>
 

@@ -1167,3 +1167,29 @@ html { scroll-padding-top: calc(var(--topbar-h) + var(--header-h) + 40px); }
 /* Inicio · «¿Qué necesitas hoy?»: sin gráficos decorativos y todos los títulos del mismo tamaño */
 .bento .bt h3, .bento .bt-img h3 { font-size: 1.3rem; font-weight: 600; line-height: 1.25; letter-spacing: -0.02em; }
 .bt-b .bt-foot, .bt-f .bt-foot { margin-top: auto; max-width: 560px; }
+
+/* Portadas internas (2026-11-27): texto a la izquierda en una columna estrecha, centrado en vertical;
+   la mitad derecha queda libre para la foto (prop `img` de PageHero) */
+.page-hero .wrap { text-align: left; }
+.page-hero h1 { max-width: 620px; margin: 0; font-size: clamp(2.4rem, 4.6vw, 4rem); line-height: 1.04; }
+.page-hero .lead { max-width: 500px; margin: 20px 0 0; }
+.page-hero .btn-row { justify-content: flex-start; }
+.page-hero .note { max-width: 560px; margin: 28px 0 0; }
+.page-hero .info-list { justify-content: flex-start; }
+.page-hero.has-img { background: #0b2f4f var(--hero-img) center / cover no-repeat; }
+.page-hero.has-img::before { background: linear-gradient(90deg, rgba(6,29,50,.82) 0%, rgba(6,29,50,.55) 38%, rgba(6,29,50,0) 68%); }
+@media (max-width: 720px) {
+  .page-hero.has-img { background-position: 70% center; }
+  .page-hero.has-img::before { background: linear-gradient(180deg, rgba(6,29,50,.35) 0%, rgba(6,29,50,.85) 100%); }
+}
+/* Urgencias: degradado rojo oscuro sobre la foto */
+.page-hero.alert-grad.has-img::before { background: linear-gradient(90deg, rgba(74,10,14,.86) 0%, rgba(74,10,14,.58) 38%, rgba(74,10,14,0) 68%); }
+@media (max-width: 720px) {
+  .page-hero.alert-grad.has-img::before { background: linear-gradient(180deg, rgba(74,10,14,.35) 0%, rgba(74,10,14,.88) 100%); }
+}
+/* Inicio: foto real en la portada (antes un recuadro vacío) */
+.hero-stage .hero-photo { display: block; width: 100%; height: clamp(300px, 36vw, 480px); object-fit: cover; border-radius: 28px; border: 1px solid rgba(255,255,255,.6); }
+@media (max-width: 720px) { .hero-stage .hero-photo { height: 260px; } }
+/* Capa del degradado sobre la foto (sin `content` no se pintaba) */
+.page-hero.has-img { position: relative; isolation: isolate; }
+.page-hero.has-img::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none; }

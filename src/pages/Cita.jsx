@@ -8,7 +8,7 @@ export default function Cita() {
   usePage('Solicitar cita en Barranquilla | HUM', 'Solicita tu cita en el HUM por WhatsApp, correo o formulario. Te contamos qué necesitas si tienes EPS o eres paciente particular.')
   return (
     <>
-      <PageHero variant="blue" title="Solicita tu cita" lead="Pide tu cita por el medio que prefieras. Nuestro equipo te contacta para confirmar la fecha y la hora.">
+      <PageHero variant="blue" img="/img/banners/hero-cita.jpg" title="Solicita tu cita" lead="Pide tu cita por el medio que prefieras. Nuestro equipo te contacta para confirmar la fecha y la hora.">
         <AvisoUrgencia />
       </PageHero>
 
