@@ -77,10 +77,10 @@ export default function Cita() {
                 { name: 'nombre', label: 'Nombre completo', required: true, full: true },
                 { name: 'documento', label: 'Tipo y número de documento', type: 'doc', required: true },
                 { name: 'celular', label: 'Celular o WhatsApp', type: 'tel', required: true },
-                { name: 'correo', label: 'Correo electrónico', type: 'email', full: true },
+                { name: 'correo', label: 'Correo electrónico', type: 'email' },
                 { name: 'servicio', label: 'Servicio o especialidad', type: 'select', required: true, full: true, options: [...SERVICIOS_LISTA, ...TODAS_ESPECIALIDADES] },
                 { name: 'tipo', label: 'Soy paciente', type: 'radio', required: true, options: ['EPS', 'Particular'] },
-                { name: 'eps', label: 'EPS (si aplica)' },
+                { name: 'eps', label: 'EPS (si aplica)', full: true },
                 { name: 'comentario', label: 'Comentario (opcional)', type: 'textarea', full: true, help: 'Por favor no escribas información médica.' },
               ]}
             />

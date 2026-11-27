@@ -52,7 +52,7 @@ export default function Atencion() {
                 { name: 'documento', label: 'Tipo y número de documento', type: 'doc' },
                 { name: 'celular', label: 'Celular', type: 'tel' },
                 { name: 'correo', label: 'Correo electrónico', type: 'email' },
-                { name: 'area', label: 'Servicio o área a la que te refieres', type: 'select', options: [...SERVICIOS_LISTA, 'Atención al usuario', 'Otro'] },
+                { name: 'area', label: 'Servicio o área a la que te refieres', type: 'select', full: true, options: [...SERVICIOS_LISTA, 'Atención al usuario', 'Otro'] },
                 { name: 'mensaje', label: 'Cuéntanos qué pasó', type: 'textarea', full: true, required: true, help: 'Descríbenos lo ocurrido con claridad. No escribas información médica que no sea necesaria.' },
               ]}
             />
